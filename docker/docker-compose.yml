@@ -27,7 +27,7 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
 
   ckb:
-    image: nervos/ckb:v0.103.0
+    image: nervos/ckb:v0.112.1
     user: root
     ports:
       - 8114:8114   # rpc
