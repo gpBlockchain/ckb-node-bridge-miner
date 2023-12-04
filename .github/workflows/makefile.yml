@@ -1,0 +1,29 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: build-ckbNodeBridge
+        run: make build-ckbNodeBridge
+
+      - name: build-miner
+        run: make build-miner
+
+      - name: Run test
+        run: make test
+
+      - name: curl
+        run: |
+          curl --location 'localhost:8114/' --header 'Content-Type: application/json' --data '{	"jsonrpc":"2.0","method":"get_tip_block_number",	"params":[],	"id":64}'
+          cd docker && docker-compose exec -T mysql mysql -uroot -p123456 -hmysql -P3306 demo -e 'SELECT * FROM found_blocks;'
