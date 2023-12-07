@@ -1,6 +1,6 @@
 build-ckbNodeBridge:
-	git clone https://github.com/gpBlockchain/ckbNodeBridge.git
-	cd ckbNodeBridge && git checkout lgp/update-rust && cargo build
+	git clone https://github.com/zhangsoledad/ckbNodeBridge.git
+	cd ckbNodeBridge && cargo build
 
 build-miner:
 	cargo build
